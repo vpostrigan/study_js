@@ -1,0 +1,12 @@
+
+cd init
+npm install
+
+cd vuejs-firebase-shopping-cart/
+npm install
+npm run build
+npm run serve
+
+#other terminal
+cd init
+npm run test

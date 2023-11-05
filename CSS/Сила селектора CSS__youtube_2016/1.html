@@ -1,0 +1,147 @@
+<div id="element-with-id" class="foo">
+    Element with ID
+</div>
+
+<div class="want-more-powerfull-selector foo">
+    Rerquire additional selector
+</div>
+
+<div id="id.with.dot">Element with dot in ID name</div>
+<div class="class.with.dot">Element with dot in class name</div>
+
+<ul class=list>
+    <li>Do not make me stronger</li>
+</ul>
+
+<div data-role="main-container">Main container</div>
+<div data-role="main-sidebar">Main sidebar</div>
+<div data-role="main-sidebar-category">Main sidebar</div>
+<div data-role="main-sidebar-filter">Main sidebar</div>
+
+<style>
+/* приоритеты */
+/* id class tag */
+/* 0 0 0 */
+/* 0 0 15 */
+/* 0 1 0 */ /* 1 сильнее 0 */
+/* 0 1 15 */ /* 1 сильнее 15 */
+/* 1 0 0 */
+/* inline сильнее остальных */
+/* !important сильнее inline */
+
+
+/* Элемент с ID */
+/* 1 0 0 *//* сила селектора */
+#element-with-id {
+    border: 1px solid red;
+}
+/* ID это тоже аттритуб */
+/* 0 1 0 */
+[id=element-with-id] {
+    border: 1px solid lime;
+}
+
+/* */
+
+/* 0 1 0 */
+[id=element-with-id] {
+    border: 1px solid lime;
+}
+/* 0 1 0 */ /* .foo перекроет предыдущий */
+.foo {
+    border: 1px solid red;
+}
+/* 0 0 1 */ /* div не сможет перекрыть предыдущий */
+div {
+    border: 1px solid black;
+}
+
+/* */
+
+/* 0 2 0 */ /* этот сильнее */
+.foo.want-more-powerfull-selector {
+    border: 1px solid red;
+}
+/* 0 1 1 */
+div.want-more-powerfull-selector {
+    border: 1px solid red;
+}
+
+/* можно использовать class два раза */
+/* 0 2 0 */ /* тогда этот перекроет '.foo.want-more-powerfull-selector' */
+.want-more-powerfull-selector.want-more-powerfull-selector {
+    border: 1px solid red;
+}
+
+/* */
+
+/* нужно экранировать точки*/
+/* 1 0 0 */
+#id\.with\.dot {
+    border: 1px solid lime;
+}
+/* можно понизить */
+/* 0 1 0 */
+[id=id\.with\.dot] {
+    border: 1px solid lime;
+}
+
+/* */
+
+/* class можно записать двумя путями */
+[class=class\.with\.dot] {
+    border: 1px solid lime;
+}
+.class\.with\.dot {
+    border: 1px solid lime;
+}
+
+/* */
+
+/* 0 1 1 */
+.list li {
+    border: 1px solid lime;
+}
+/* понизить силу селектора */
+/* 0 1 0 */
+.list > * {
+    border: 1px solid lime;
+}
+
+/* */
+
+/* выбрать все '<div data-role="main' */
+/* 0 1 0 */
+[data-role] {
+    border: 1px solid lime;
+}
+
+/* выбрать все '<div data-role="main' которые начинаются с main */
+/* 0 1 0 */
+[data-role^=main] {
+    border: 1px solid lime;
+}
+
+/* выбрать все '<div data-role="main' которые заканчиваются на sidebar */
+/* 0 1 0 */
+[data-role$=sidebar] {
+    border: 1px solid pink;
+}
+
+/* выбрать все '<div data-role="main' которые содержат sidebar */
+/* 0 1 0 */
+[data-role*=sidebar] {
+    border: 1px solid pink;
+}
+
+/* выбрать все '<div data-role="main' которые содержат sidebar с пробелами */
+/* 0 1 0 */
+[data-role~=sidebar] {
+    border: 1px solid pink;
+}
+/* это эквивалентно [class~=sidebar] или .sidebar */
+.sidebar {
+    border: 1px solid pink;
+}
+
+</style>

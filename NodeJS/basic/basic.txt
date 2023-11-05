@@ -1,0 +1,110 @@
+https://www.youtube.com/watch?v=3aGSqasVPsI   Node JS - Быстрый Курс за 1 час
+
+1) $ D:\workspace_study\study>node -v
+v13.14.0
+
+2) Interactive mode. $ D:\workspace_study\study>node
+Welcome to Node.js v13.14.0.
+Type ".help" for more information.
+> .help     // will show commands
+.break    Sometimes you get stuck, this gets you out
+.clear    Alias for .break
+.editor   Enter editor mode
+.exit     Exit the repl
+.help     Print this help message
+.load     Load JS from a file into the REPL session
+.save     Save all evaluated commands in this REPL session to a file
+
+> console.log('Hello World')    // will show Hello World
+
+> const log = text => console.log(`Log: ${text}`)  // will create function log
+undefined
+> log('Hello')    // run function log
+Log: Hello
+> .exit           // will close Interactive mode
+
+3) $ npm -v
+   $ npm init
+will get file package.json
+
+4) npm установка пакета
+$ npm install chalk
+или
+>npm i chalk
+по номеру версии
+npm i chalk@4.1.2
+
+теперь в package.json будет
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+
+а в
+D:\workspace_study\study\JavaScript\NodeJS\basic\node_modules\chalk\package.json
+devDependencies   зависимости для разработки
+dependencies      зависимости для библиотеки
+
+$ npm i nodemon -D   зависимость для разработки
+
+теперь в package.json будет
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+
+можно удалить node_modules папку
+$ npm i     // установит все из package.json  "dependencies"
+
+5)
+const chalk = require('chalk')  // обращение к модулю chalk
+console.log(chalk.blue('Hello World'))
+
+6) создать файл data.js
+const text = 'Hello NodeJS from data.js'
+module.exports = text
+
+в index.js
+const text = require('./data')
+console.log(chalk.green(text))
+
+тогда выведет
+Hello NodeJS from data.js
+
+7) на самом деле все *.js файлы обернуты в function
+
+(function(exports, require, module, __dirname, __filename) {
+const chalk = require('chalk')
+...
+})
+
+8) Документация подключаемых модулей
+https://nodejs.org/dist/latest-v18.x/docs/api/path.html
+
+пример
+const path = require('path')
+console.log('File name: ', path.basename(__filename))
+console.log('Dir name: ', path.dirname(__filename))
+// File name:  path.js
+// Dir name:  D:\workspace_study\study\JavaScript\NodeJS\basic\demo
+
+9) $ D:\workspace_study\study\JavaScript\NodeJS\basic>node demo/http
+не будет видеть новый код, для того чтобы был автоматический редеплой
+
+a)
+в package.json добавили
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+b)
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+заменили
+  "scripts": {
+    "start": "node demo/http.js",
+    "dev": "nodemon demo/http.js"
+  },
+c) старт
+$ npm run dev
+
+10) npm check and update package if needed
+https://stackoverflow.com/questions/16525430/npm-check-and-update-package-if-needed

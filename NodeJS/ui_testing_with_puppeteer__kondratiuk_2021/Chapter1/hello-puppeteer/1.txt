@@ -1,0 +1,4 @@
+
+right click package.json -> Run 'npm install'
+
+right click index.js -> Run 'index.js'

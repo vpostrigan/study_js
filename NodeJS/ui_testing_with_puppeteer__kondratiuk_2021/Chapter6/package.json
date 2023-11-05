@@ -1,0 +1,17 @@
+{
+  "name": "CH3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 300000 --reporter=list --retries 3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3",
+    "puppeteer": "^7.1.0"
+  }
+}

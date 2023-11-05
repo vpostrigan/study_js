@@ -1,0 +1,93 @@
+body {
+  background-color: #0f0;
+}
+
+h1 {
+  color: #fff;
+}
+
+// //
+
+@black: #000;
+@red: red;
+h3 {
+  background-color: @black;
+}
+
+h4 {
+  background-color: @red;
+}
+
+// lighten(@red, 20%) - на 20% светлее чем red
+h5 {
+  background-color: lighten(@red, 20%);
+}
+
+// //
+
+@base: 10px;
+@base-2: 2px;
+h2 {
+  padding: @base+10-@base-2;
+}
+
+// //
+
+// old
+.main_old {
+  background-color: transparent;
+  padding: 0;
+}
+.main_old:hover {
+  background-color: #000;
+}
+
+// new
+.main_new {
+  background-color: transparent;
+  padding: 0;
+  &:hover {
+    background-color: #000;
+  }
+
+  p {
+    text-align: center;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+// //
+
+.main-header {
+  background-color: transparent;
+}
+.main-form {
+  color: #fff;
+}
+
+// new
+.main {
+  &-header {
+    background-color: transparent;
+  }
+  &-form {
+    color: #fff;
+  }
+}
+
+// //
+
+// миксины
+.top {
+  border: 1px solid #000;
+  color: #fff;
+}
+.bottom {
+  padding-bottom: 30px;
+}
+.main-header {
+  .top; // добавит сюда свойства .top
+  .bottom; // добавит сюда свойства .bottom
+}

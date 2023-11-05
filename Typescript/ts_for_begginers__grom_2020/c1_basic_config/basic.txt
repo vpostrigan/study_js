@@ -1,0 +1,29 @@
+https://www.youtube.com/watch?v=01iNswZC6P8
+TypeScript. Знакомство. Базовая настройка
+
+1) install globally
+$ npm install -g typescript
+
+$tsc -v
+Version 4.9.5
+
+если ошибки
+- Открываем терминал PowerShell от админа.
+- Вставляем и запускаем - Set-ExecutionPolicy RemoteSigned
+- На вопрос отвечаем - A
+
+1)
+$ tsc index.ts
+
+2) Будем автоматически компилировать index.ts
+$ tsc -w index.ts
+
+3) Создать tsconfig.json
+$ tsc --init
+тогда все опции будут в 'tsconfig.json'
+а запуск будет через $ tsc
+
+тогда в tsconfig.json можно добавить
+ "watch": true,
+или
+"target": "es2016"  компилировать в es2016

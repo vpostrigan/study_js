@@ -1,0 +1,124 @@
+https://www.youtube.com/watch?v=w2n5HkUNEv4    Полная настройка Node.js с TypeScript в 2023
+
+// 1)
+$ npm init -y
+Wrote to D:\workspace_study\study\JavaScript\Typescript\Полная настройка NodeJs с TypeScript в 2023__youtube_2022\package.json:
+{
+  "description": ""
+}
+
+// 2)
+$ npm i -D typescript
+added 1 package, and audited 2 packages in 4s
+
+found 0 vulnerabilities
+
+// 3)
+$ npm i @types/node -D
+added 2 packages, and audited 4 packages in 2s
+
+found 0 vulnerabilities
+
+
+в package.json будет:
+  "devDependencies": {
+    "@types/node": "^20.8.10",
+    ...
+
+// 4)
+$ npx tsc --init
+
+Created a new tsconfig.json with:
+                                                                                                                     TS
+  target: es2016
+  module: commonjs
+  strict: true
+  esModuleInterop: true
+  skipLibCheck: true
+  forceConsistentCasingInFileNames: true
+
+// 5)
+поменять "target": "es2016"
+на       "target": "es2018"
+
+поменять     // "lib": [],
+на           "lib": ["ES6"],
+
+поменять  "module": "commonjs",
+на        "module": "NodeNext"
+
+поменять     // "rootDir": "./",
+на           "rootDir": "./src",
+
+поменять     // "resolveJsonModule": true,
+на           "resolveJsonModule": true,
+
+поменять     // "allowJs": true,
+на           "allowJs": true,
+
+поменять     // "outDir": "./"
+на           "outDir": "./build"
+
+поменять     // "noImplicitAny": true,
+на           "noImplicitAny": true,
+
+поменять     // "sourceMap": true,
+на           "sourceMap": true,
+
+в tsconfig.json добавить
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
+  "lib": ["esnext"],
+  "ts-node": {
+    "esm": true
+  }
+
+в package.json добавить
+  "type": "module",
+
+
+// 6) test
+$ npx tsc
+
+если в tsconfig.json:
+  "extends": "@tsconfig/node16/tsconfig.json",
+сначала сделать
+$ npm install --save-dev @tsconfig/node16
+
+npx tsc --target ES2016
+
+
+// 7) конфигурационный файл
+nodemon.json
+
+// 8) добавить script в package.json
+   "dev": "npx nodemon"
+
+$ npm run dev
+Hello NodeJS
+Main.ts analytics works ...
+
+если менять код, покажет
+Hello NodeJS!
+Main.ts analytics works ...
+
+// 9) добавить в package.json
+    "build": "npx tsc",
+    "start": "npm run build && node build/main"
+$ npm start
+
+// 10) npm i -D rimraf
+$ npm run build
+$ npm start
+
+// 11) npm i -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+в корне создать  .eslintrc
+
+$ npm run lint
+$ npm run format
+
+// 12) prettier для ts кода
+$ npm i -D prettier
+
+// 13) Husky
+$ npm i -D husky

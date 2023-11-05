@@ -1,0 +1,12 @@
+https://www.youtube.com/playlist?list=PL4rYLeYunVf03ipmEcQAPWGmX26_IrVMQ
+TypeScript для начинающих. Полный курс для старта работы на Angular
+
++ https://www.youtube.com/watch?v=01iNswZC6P8   TypeScript. Знакомство. Базовая настройка
++ https://www.youtube.com/watch?v=cxs_OlXVCRI   TypeScript. Переменные и константы
++ https://www.youtube.com/watch?v=D5Y29GFnSiI   TypeScript. Типы данных
++ https://www.youtube.com/watch?v=wWiMhvCUVbA   Опреации над типами. TypeScript. Union. Intersection
++ https://www.youtube.com/watch?v=JCCN1EtCcoM   Объявление функций. TypeScript
++ https://www.youtube.com/watch?v=57uiiXBhPYA   TypeScript. Классы. Свойства. Методы. Модификаторы доступа
++ https://www.youtube.com/watch?v=0ALjB-Y7_pg   TypeScript. Interface. Abstract class
++ https://www.youtube.com/watch?v=lOBdQuB3eXw   TypeScript Generics type. Обобщенные типы
++ https://www.youtube.com/watch?v=ZCrExFH2bSA   TypeScript. Class decorator. Decorator factory.

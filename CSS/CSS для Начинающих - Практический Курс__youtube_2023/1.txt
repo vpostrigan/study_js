@@ -1,0 +1,408 @@
++ https://www.youtube.com/watch?v=SpCUuyZZTp8   CSS для Начинающих - Практический Курс
+
+1) Инлайн стили
+1 из 3 способов подключения стилей
+<body style="background: red;">
+
+<style>
+    body {
+        background: red;
+    }
+    h1 {
+        color: white;
+        //color: rgb(155, 41, 41);
+    }
+</style>
+
+2) Внешний CSS файл
+<head><link href="styles.css" rel="stylesheet" />
+
+styles.css:
+body {
+    background-color: #f1f1f1;
+    color: #0f141e;
+}
+
+3) Chrome DevTools
+
+4) Работа со шрифтами
+
+body {
+    font-size: 16px;
+    font-weight: 600; // 0-500 normal; 600-900 bold
+    font-family: Verdana;
+
+    // or 1 line
+    font: normal 16px 'Roboto', sans-serif;
+}
+
+
+// external font
+@import url('https://fonts.googleapis.com/css2?family=Roboto')
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+5) Работа с картинками img
+<img src="avatar0.png" class="avatar" width="200" alt="text" id="avatar1" />
+.avatar {
+    width: 200px;
+    border-radius: 28px;  скругленные углы
+    border-radius: 50%;   круглая картинка
+    box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.25);  тень для картинки
+}
+#avatar1 {
+    ...
+}
+
+
+6) стилизация параграфов
+.info p {
+    color: #86898f;
+    margin: 0;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: underline;
+    text-transform: uppercase;    весь текст большими буквами
+    letter-spacing: 15px;         растояние между символами
+    word-spacing: 42px;           пространство между словами
+}
+
+<div class="info"><p></p></div>
+
+7) Box Model
+<div class="container">
+  <div class="social">
+    <h2></h2>
+  </div>
+</div>
+
+.container {
+    width: 100%;
+    //max-width: 750px; // максимально 750, если окно меньше займет меньше
+    margin: auto; // все содержимое по середине, если (max-width: 750px)
+}
+.social {
+    background: red;
+    padding: 15px;
+    border: 5px solid red;
+    margin: 15px 40px; // сверху и снизу
+    border-bottom-style: dotted;
+    border-top-width: 15px;
+    border-right-color: blue;
+}
+
+8) Вложенные элементы в CSS
+<div class="container">
+  <div class="box-model">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div style="margin-bottom: 500px;">
+</div>
+
+.box-model div { // все вложенные div тоже
+
+}
+.box-model > div { // только дочерние
+    background: #000;
+    height: 200px;
+    width: 25%;
+    float: left; // четыре div в линию
+    border: 4px solid green;
+}
+
+9) Стилизация ссылок
+
+<h4></h4>
+<a> </a>|<a> </a>
+
+a {
+    color: black;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:active { // когда нажали кнопку
+    color: blue;
+}
+a:visited {
+    color: grey;
+}
+
+10) Реализация секций - "карточек"
+<div class="card bg-yellow">
+    <div></div>
+</div>
+<div class="card bg-green">
+    <div></div>
+</div>
+
+.card {
+    padding: 15px 20px;
+    background: blue;
+    margin-bottom: 20px; // расстояние между "card"
+    border-radius: 20px; // скругления
+}
+
+.bg-yellow {
+    background: yellow;
+}
+.bg-green {
+    background: green;
+}
+.bg-red {
+    background: red;
+}
+
+11) Стилизация списка хобби
+.list {
+    padding: 0 20px;
+    list-style: none; // уберет точки в начале
+}
+
+* { // обнулить все отступы внешние и внутренние
+    padding: 0;
+    marging: 0;
+}
+
+.list li {
+    color: #86898f;
+    margin-bottom: 10px;
+    border-bottom: 1px solid grey;    элементы будут подчеркнутыми
+}
+
+12) Интересный пример работы с псевдоэлементами
+
+.table {
+    width: 100%;
+}
+.table tr {
+    margin-bottom: 10px; // не работает для этого свойства
+    padding-bottom: 10px; // работает
+}
+
+'// не работает для этого свойства' так как 'display: table-cell'
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+// //
+
+<tr>
+    <td>Test11<td>
+    <td class="temp">Test12<td>
+</tr>
+<tr class="temp">
+    <td>Test21<td>
+    <td class="temp">Test22<td>
+</tr>
+
+.table .temp {
+    color: #86F;
+}
+
+// можно заменить на пвесдоселектор
+.table td:nth-child(2) {  // вторая колонка серая
+    color: #86F;
+}
+// можно к двум селекторам
+.table td:nth-child(2), .table td:nth-child(3) {
+    color: #86F;
+}
+
+.table tr:nth-child(even) {  // каждая вторая строка зеленая
+    background: green;
+}
+
+13) Пример стилизациия списка с ссылками
+
+<div>
+    <h2></h2>
+    <ul class="link-list">
+        <li><a href="http">Test1</a></li>
+        <li><a href="http">Test2</a></li>
+    </ul>
+</div>
+
+.link-list {
+    list-style: none; // убрать точки в начале списка
+    padding: 0;
+}
+
+.link-list li {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+14) Стилизация форм
+
+<div class="contact">
+    <h2>Header</h2>
+    <form action="/">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name...">
+        </div>
+    </form>
+</div>
+
+.contact h2 {
+    text-align: center;
+}
+
+.form-group label {
+    display: block; // будет как <p> тег
+    font-size: 14px;
+    color: #8...;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #ccc;
+    color: #000;
+    padding: 15px 0 10px;
+    outline: none;
+    font-family: inherit;
+}
+
+14.a) Стилизация форм
+
+<div class="contact">
+    <h2>Header</h2>
+    <form action="/">
+        <div class="row">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name...">
+        </div>
+        <div class="form-group">
+            <label for="name">Email:</label>
+            <input type="text" id="name" placeholder="Enter your email...">
+        </div>
+        </div>
+    </form>
+</div>
+
+.row {
+    display: flex;  // Name и Email будут на одной строке
+    margin-bottom: 20px;
+}
+
+.row > .form-group {
+    width: 50%;
+}
+
+.row > .form-group:first-child {
+    margin-right: 20px;
+}
+
+
+15.a) Свойство display
+
+.info {
+    display: flex;  // img и Header1 будут на одной строке
+}
+
+.info-text {
+    margin-left: 40px;
+}
+
+.info-text h4 {
+    margin-bottom: 10px;
+}
+
+<div class="info">
+    <img />
+    <div class="info-text"><h4>Header1</h4><p>text</p></div>
+</div>
+
+
+
+16) Стилизация кнопки
+.btn {
+    color: #fff;
+    background: #111;
+    padding: 15px 20px;
+    border: none;
+    font-family: inherit;
+    cursor: pointer; // будет менятся курсор
+}
+
+.btn:hover {
+    opacity: 0.9;  // кнопка будет белеть при наведении
+}
+
+20) Позиционирование в CSS
+<div class="position">
+    <div class="box"></div>
+</div>
+
+.position {
+    border: 4px solid black;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.box {
+    position: static; // default, будет посередине
+    position: absolute; // default, уйдет вниз,  позиция относительно окна, а не блока
+    width: 50px;
+    height: 50px;
+    background: lightcoral;
+}
+
+//
+.position {
+    position: relative;
+    border: 4px solid black;
+    margin-top: 40px;
+    padding: 20px;
+    height: 300px;
+}
+.box {
+    position: absolute; // позиционируется относительно родительского блока relative
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: lightcoral;
+}
+
+.box {
+    position: fixed; // блок будет двигатся вместе со скролом
+
+
+21) Медиа запросы. Адаптив
+
+.info {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+@media(max-width: 700px) {  // для мобильных устройств (маленькая площадь страницы)
+    .info {
+        text-align: center;
+        display: block;
+    }
+}
+
+
+22) Деплой на GitHub
+добавить html, css страницы на github.
+https://github.com/.../.../settings/pages    можно сделать свой сайт прямо на github
+он будет работать по URL
+...github.io/css/
+
+23) Завершение работы
+24) Аутро

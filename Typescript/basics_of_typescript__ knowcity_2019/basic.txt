@@ -1,0 +1,29 @@
+
+https://www.youtube.com/watch?v=tej4MeqT1SE
+Основы Typescript и для чего он нужен
+
+1) Typescript = "Type" + Javascript
+компилятор Typescript обрабатует любой валидный Javascript
+(можно взять любой рабочий javascript проект и постепенно внедрять в него Typescript)
+
+2) установка Typescript
+$ npm install -g typescript     -g install globally
+
+3) компилятор
+$ tsc -v
+Version 4.5.5
+
+4) запуск
+$ D:\workspace_study\study\Typescript\basic>node index_legacy.js
+   [
+     {
+       firstName: 'First Name 0',
+       lastName: 'Last Name 0',
+       job: 'Job 0',
+       isValid: true
+     },
+
+5) перевести в TypeScript.
+Переименовать index_legacy.js в index.ts
+компиляция:  $ tsc index.ts
+запуск:  $ node index.js
