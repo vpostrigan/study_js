@@ -160,3 +160,132 @@ export function toPascalCase(word) {
 
 
 // [Поиск типов для JavaScript]
+// 1. Ищет потомка файла .d.ts с тем же именем, что и у файла .js.
+// Найденный потомок используется в качестве декларации типов для этого файла .js.
+
+// my-app/
+// ├──src/
+// │ ├──index.ts
+// │ └──legacy/
+// │  ├──old-file.js
+// │  └──old-file.d.ts
+
+// импортируется old-file (старый файл) из index.ts:
+// index.ts
+// import './legacy/old-file'
+
+// (TypeScript использует src/legacy/old-file.d.ts в качестве источника деклараций типов для ./legacy/old-file)
+
+// 2. В противном случае, если allowJs и checkJs установлены как true,
+// будет сделан вывод типов файла .js (на основе представленных в нем аннотаций JSDoc)
+// или весь модуль будет обозначен как any.
+
+
+
+// При импортировании стороннего модуля JavaScript
+// 1. Ищет для модуля локальную декларацию типа и, если таковая существует, использует ее.
+
+// пример
+// my-app/
+// ├──node_modules/
+// │ └──foo/
+// ├──src/
+// │ ├──index.ts
+// │ └──types.d.ts
+
+// А так выглядит type.d.ts:
+// types.d.ts
+declare module 'foo' {
+  let bar: {}
+  export default bar
+}
+
+// Если затем вы импортируете foo, то в качестве источника типов для
+// него TypeScript использует внешнюю декларацию модуля в types.d.ts:
+// index.ts
+// import bar from 'foo'
+
+// 2. В противном случае он будет искать декларацию в файле package.json, принадлежащем модулю.
+// Если в нем определено поле types или typings, то он использует файл .d.ts,
+// на который это поле указывает, и возьмет декларации типов из него.
+
+// 3. Или он будет поочередно просматривать каталоги в поиске каталога node modules/@types,
+// где содержатся декларации типов для модуля.
+
+// Пример, React:
+// npm install react --save
+// npm install @types/react --save-dev
+// my-app/
+// ├──node_modules/
+// │ ├──@types/
+// │ │ └──react/
+// │ └──react/
+// ├──src/
+// │ └──index.ts
+// При импорте React TypeScript найдет каталог @types/react и использует
+// его в качестве источника деклараций типов для него:
+// index.ts
+// import * as React from 'react'
+
+// 4. В противном случае он перейдет к шагам 1–3 алгоритма локального поиска типов.
+
+
+// [Использование стороннего кода JavaScript]
+// 1. JavaScript с декларациями типов
+// (Установленный код уже содержит декларации типов.)
+// npm install rxjs
+// npm install ava
+// npm install @angular/cli
+
+// 2. JavaScript, имеющий декларации типов на DefinitelyTyped
+// (Код не содержит декларации типов, но их можно взять из DefinitelyTyped.)
+// (в централизованном и поддерживаемом сообществом репозитории)
+
+// npm install lodash –save              # Установить Lodash
+// npm install @types/lodash --save-dev  # Установить декларации типов для Lodash
+
+// 3. Код не содержит декларации типов, и их нет на DefiniteTyped.
+// (JavaScript, не имеющий деклараций типов на DefinitelyTyped)
+// a) Поместите в белый список нетипизированный импорт, добавив над ним директиву // @ts-ignore.
+// TypeScript позволит использовать этот нетипизированный модуль, но сам модуль, включая все его содержимое, будет типизирован как any:
+
+// @ts-ignore
+// import Unsafe from 'untyped-module'
+// Unsafe // any
+
+// b) Поместите в белый список все применения этого модуля,
+// создав пустой файл деклараций типов и заглушив модуль
+
+// types.d.ts
+// declare module 'nearby-ferret-alerter'
+
+// Это сообщит TypeScript, что существует модуль, который вы можете импортировать
+// (import alert from 'nearby-ferret-alerter'), но ничего не сообщит о содержащихся в нем типах.
+
+// с) Создайте внешнюю декларацию модуля.
+
+// types.d.ts
+declare module 'nearby-ferret-alerter' {
+  export default function alert(loudness: 'soft' | 'loud'): Promise<void>
+  export function getFerretCount(): Promise<number>
+}
+// Теперь, когда вы произведете import alert from 'nearby-ferretalerter',
+// TypeScript будет точно знать тип alert, который теперь не any, а (loudness: 'quiet' | 'loud') => Promise<void>
+
+// d) Создайте декларацию типов и отправьте ее на NPM.
+
+
+// [Итоги]
+// Таблица 11.1.Способы использования JavaScript из TypeScript
+// Подход                                              Флаги                 tsconfig.json
+// Импорт нетипизированного JavaScript                {"allowJs": true}       Слабая
+// Импорт и проверка JavaScript                       {"allowJs": true,       Средняя
+//                                                     "checkJs": true}
+// Импорт и проверка JavaScript с аннотациями JSDoc   {"allowJs": true,       Отличная
+//                                                     "checkJs": true,
+//                                                     "strict": true}
+// Импорт JavaScript с декларациями типов             {"allowJs": false,      Отличная
+//                                                     "strict": true}
+// Импорт TypeScript                                  {"allowJs": false,      Отличная
+//                                                     "strict": true}
+
