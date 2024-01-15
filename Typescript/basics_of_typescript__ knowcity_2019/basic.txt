@@ -8,10 +8,11 @@ https://www.youtube.com/watch?v=tej4MeqT1SE
 
 2) установка Typescript
 $ npm install -g typescript     -g install globally
-
-3) компилятор
 $ tsc -v
 Version 4.5.5
+
+3) компилятор
+$ tsc index.ts
 
 4) запуск
 $ D:\workspace_study\study\Typescript\basic>node index_legacy.js
