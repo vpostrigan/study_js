@@ -1,0 +1,25 @@
+
+Оптимальный redirect
+
+Внизу приведён оптимальный способ перенаправления пользователя на другую страницу, 
+в том случае, например, если вы поменяли домен. 
+Жирным шрифтом отмечены значения, которые нужно изменить. 
+Работает практически в любом браузере. Copy'n'paste на здоровье :-)
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<script language="JavaScript1.1" type="text/javascript">
+<!--
+location.replace("http://www.new.site/page.html"); // текущая страница будет заменена в history на новую — важно в плане юзабилити
+//-->
+</script>
+<noscript>
+<meta http-equiv="Refresh" content="0; URL=http://www.new.site/page.html"> 
+<!-- для тех нескольких процентов «сёрферов», которые отключили JavaScript -->
+</noscript>
+</head>
+<body>
+Мы перебрались на <a href="http://www.new.site/page.html">новое местечко</a>.
+</body>
+</html>
